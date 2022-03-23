@@ -1,0 +1,113 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -80.850862,35.224754 ]
+    },
+    "properties": {
+    "id":1,
+    "name":"Charlotte FC",
+    "attendance":74479
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -78.753359,35.785957 ]
+    },
+    "properties": {
+    "id":2,
+    "name":"North Carolina FC",
+    "attendance":10125
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -82.548437,35.58705 ]
+    },
+    "properties": {
+    "id":3,
+    "name":"Asheville City FC",
+    "attendance":2549
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -77.90518,34.293404 ]
+    },
+    "properties": {
+    "id":4,
+    "name":"Wilmington Hammerheads",
+    "attendance":4667
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -80.750643,35.152528 ]
+    },
+    "properties": {
+    "id":5,
+    "name":"Charlotte Eagles",
+    "attendance":28886
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -80.82823,35.218257 ]
+    },
+    "properties": {
+    "id":6,
+    "name":"Charlotte Independance",
+    "attendance":2500
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -78.902178,36.034369 ]
+    },
+    "properties": {
+    "id":7,
+    "name":"Tobacco Road FC",
+    "attendance":1179
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -78.756426,35.785905 ]
+    },
+    "properties": {
+    "id":8,
+    "name":"NC Courage (Women's Pro)",
+    "attendance":5875
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -80.697744,35.108795 ]
+    },
+    "properties": {
+    "id":9,
+    "name":"Stumptown AC",
+    "attendance":987
+    }
+  }
+]
+}

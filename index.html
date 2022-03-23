@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8 />
+	<title>Highest Soccer Team Attendance in North Carolina</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
+  <style>
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+		body {
+			margin: 0;
+			padding: 0;
+			background: "whitesmoke";
+			font-family: "Noto Sans", sans-serif;
+			color: #3d3d3d;
+		}
+
+		h1 {
+			position: absolute;
+			margin-top: 0;
+			top: 10px;
+			left: 45px;
+			font-size: 2em;
+			font-family: "Lora", serif;
+			letter-spacing: .04em;
+			padding: 2px 12px;
+			background: rgba(256, 165, 0);
+			border: 1px solid grey;
+			border-radius: 3px;
+			z-index: 800;
+		}
+
+		h2 {
+			font-family: "Lora", serif;
+			letter-spacing: .04em;
+		}
+
+		#map {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		section {
+			position: absolute;
+			bottom: 0;
+			left: 10px;
+			width: 280px;
+			margin: 20px auto;
+			padding: 0 15px;
+			background: rgba(256, 256, 256);
+			border: 1px solid grey;
+			border-radius: 3px;
+			z-index: 800;
+		}
+
+		p {
+			font-size: .9em;
+			line-height: 1.5em;
+		}
+
+		a {
+			color: #005daa;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	</style>
+
+  <!-- Javascript Libraries -->
+    <script src="http://cdn.leafletjs.com/leaflet/v1.7.0/leaflet.js"></script>
+    <!-- mapbox gl js -->
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <!-- leaflet mapbox js -->
+    <script src="http://rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
+
+
+</head>
+
+<body>
+
+	<h1>Highest Soccer Team Attendance in North Carolina</h1>
+
+	<div id='map' style='width: 100%; height: 100%;'></div>
+
+	<section>
+
+
+	</section>
+
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+
+	<script>
+
+    var map = L.map('map', {
+        center: [35.3993, -80.4359],
+        zoom: 8
+    });
+
+    var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
+      	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      	ext: 'png'
+    }).addTo(map);
+
+
+
+    teams = L.geoJson.ajax("data/ncsoccerattendance.geojson", {
+      attribution: 'Data: Wikipedia, Transfermarkt, NCSoccer.org Map: Landon Coley',
+			//onEachFeature: function (feature, layer) {
+				//layer.bindPopup("Team Name: " + ncsoccerattendance.name + "<BR>" + "Attendance: " + ncsoccerattendance.attendance);
+			//},
+      pointToLayer: function (feature, x){
+      return L.circleMarker(x, {
+        color: '#ff7900',
+        opacity: 1,
+        weight: 2,
+        fillColor: '#ff7900',
+        fillOpacity: .6,
+        radius: calcRadius(feature.properties.attendance)
+      }).on({
+
+              mouseover: function(e){
+
+                this.setStyle({color: 'white',fillColor: 'white'});
+								this.bindTooltip("Team Name: " + feature.properties.name + "<BR>" + "Attendance: " + feature.properties.attendance);
+                                    },
+              mouseout: function(e){
+
+                this.setStyle({color:'#ff7900', fillColor: '#ff7900'});
+                } })},});
+
+  var minValue = 578759;
+  var minRadius = 8;
+
+  function calcRadius(val) {
+        return 20.00 * Math.pow(val/minValue,.5) * minRadius;
+        }
+
+        L.control.scale({position: 'bottomleft'}).addTo(map);
+
+    teams.addTo(map);
+
+
+
+	</script>
+
+</body>
+
+</html>
